@@ -77,7 +77,8 @@ namespace SnakeHealthMod.Game
 
 		public IEnumerator End()
 		{
-			yield return renderer.DeathAnim();
+			if ( HasEnded )
+				yield return renderer.DeathAnim();
 
 			renderer.CleanUp();
 

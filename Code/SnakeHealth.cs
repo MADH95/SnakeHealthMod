@@ -54,6 +54,7 @@ namespace SnakeHealthMod
 		private SnakeGame game;
 		private float tickTime = 0;
 		private bool isEnding = false;
+		private Direction currentDir;
 
 		public override bool RespondsToDrawn()
 		{
@@ -103,11 +104,11 @@ namespace SnakeHealthMod
 				base.PlayableCard.OnStatsChanged();
 			}
 
-			if ( !isEnding && ( game.HasEnded || Input.GetKeyDown( KeyCode.Q ) ) )
+			if ( game.HasEnded || Input.GetKeyDown( KeyCode.Q ) )
 			{
 				isEnding = true;
 
-				base.StartCoroutine( this.Exit() );
+				this.Exit();
 
 				return;
 			}
@@ -119,6 +120,7 @@ namespace SnakeHealthMod
 			{
 				tickTime = 0;
 				game.Step();
+				currentDir = game.MoveDir;
 			}
 		}
 
@@ -145,16 +147,16 @@ namespace SnakeHealthMod
 		private void UpdateDirection()
 		{
 
-			if ( Input.GetKeyDown( KeyCode.W ) && game.MoveDir != Direction.Down )
+			if ( Input.GetKeyDown( KeyCode.W ) && currentDir != Direction.Down )
 				game.MoveDir = Direction.Up;
 
-			if ( Input.GetKeyDown( KeyCode.S ) && game.MoveDir != Direction.Up )
+			if ( Input.GetKeyDown( KeyCode.S ) && currentDir != Direction.Up )
 				game.MoveDir = Direction.Down;
 
-			if ( Input.GetKeyDown( KeyCode.A ) && game.MoveDir != Direction.Right )
+			if ( Input.GetKeyDown( KeyCode.A ) && currentDir != Direction.Right )
 				game.MoveDir = Direction.Left;
 
-			if ( Input.GetKeyDown( KeyCode.D ) && game.MoveDir != Direction.Left )
+			if ( Input.GetKeyDown( KeyCode.D ) && currentDir != Direction.Left )
 				game.MoveDir = Direction.Right;
 		}
 	}

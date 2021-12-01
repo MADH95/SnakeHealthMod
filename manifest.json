@@ -1,6 +1,6 @@
 {
-	"name": "Monty The Python (Snake Minigame)",
-	"version_number": "1.4.0",
+	"name": "Monty_The_Python_and_Snake_Minigame",
+	"version_number": "1.1.0",
 	"website_url": "https://github.com/MADH95/SnakeHealthMod",
 	"description": "This is a BepInEx plugin made for Incryption Which adds the snake game as a minigame that can be played on the Monty card",
 	"dependencies": [
