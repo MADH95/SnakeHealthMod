@@ -101,7 +101,6 @@ namespace SnakeHealthMod
 			if ( mod.healthAdjustment != game.Score )
 			{
 				mod.healthAdjustment = game.Score;
-				base.PlayableCard.OnStatsChanged();
 			}
 
 			if ( game.HasEnded || Input.GetKeyDown( KeyCode.Q ) )

@@ -3,14 +3,12 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using APIPlugin;
-using Pixelplacement.TweenSystem;
 using System.Collections;
+
+using APIPlugin;
 
 namespace SnakeHealthMod.Game
 {
-	using static Mono.Security.X509.X520;
-
 	using Position = Vector2Int;
 
 	internal class SnakeRenderer

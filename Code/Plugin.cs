@@ -17,60 +17,60 @@ namespace SnakeHealthMod
 	[BepInDependency( "cyantist.inscryption.api", BepInDependency.DependencyFlags.HardDependency )]
 	public partial class Plugin : BaseUnityPlugin
 	{
-        public const string PluginGuid = "MADH.inscryption.SnakeHealthMod";
-        private const string PluginName = "SnakeHealthMod";
-        private const string PluginVersion = "1.0.0.0";
+		public const string PluginGuid = "MADH.inscryption.SnakeHealthMod";
+		private const string PluginName = "SnakeHealthMod";
+		private const string PluginVersion = "1.2.0.0";
 
-        internal static ManualLogSource Log;
+		internal static ManualLogSource Log;
 
-        private void Awake()
-        {
-            Logger.LogInfo( $"Loaded {PluginName}!" );
-            Log = base.Logger;
-
-            Harmony harmony = new(PluginGuid);
-            harmony.PatchAll();
-
-            AddSnakeHealth();
-            AddMonty();
-        }
-
-        private void AddMonty()
+		private void Awake ()
 		{
-            List<CardMetaCategory> metaCategories = CardUtils.getRareCardMetadata;
+			Logger.LogInfo( $"Loaded {PluginName}!" );
+			Log = base.Logger;
 
-            string name = "MontyPython";
-            string displayedName = "Monty";
+			Harmony harmony = new(PluginGuid);
+			harmony.PatchAll();
 
-            Texture2D tex = new( 2, 2 );
-            tex.LoadImage( Properties.Resources.Monty );
-
-            List<SpecialAbilityIdentifier> sAbIds = new() { SnakeHealth.id };
-
-            List<CardAppearanceBehaviour.Appearance> appearances = CardUtils.getRareAppearance;
-
-            NewCard.Add( name, displayedName, 1, 0, metaCategories, CardComplexity.Simple, CardTemple.Nature,
-                specialStatIcon: SnakeHealth.specialStatIcon, specialAbilitiesIdsParam: sAbIds,
-                defaultTex: tex, appearanceBehaviour: appearances );
+			AddSnakeHealth();
+			AddMonty();
 		}
 
-        internal static Sprite LoadSprite( byte[] imgBytes, string name, Rect rect )
+		private void AddMonty ()
 		{
-            Sprite sprite = Sprite.Create( LoadTexture( imgBytes, name ), rect, CardUtils.DefaultVector2 );
-            sprite.name = string.Concat( "portrait_", name );
+			List<CardMetaCategory> metaCategories = new() { CardMetaCategory.Rare };
 
-            return sprite;
-        }
+			string name = "MontyPython";
+			string displayedName = "Monty";
 
-        internal static Texture2D LoadTexture( byte[] imgBytes, string name )
+			Texture2D tex = new( 2, 2 );
+			tex.LoadImage( Properties.Resources.Monty );
+
+			List<SpecialAbilityIdentifier> sAbIds = new() { SnakeHealth.id };
+
+			List<CardAppearanceBehaviour.Appearance> appearances = CardUtils.getRareAppearance;
+
+			NewCard.Add( name, displayedName, 1, 0, metaCategories, CardComplexity.Simple, CardTemple.Nature,
+				bloodCost: 1, specialStatIcon: SnakeHealth.specialStatIcon, specialAbilitiesIdsParam: sAbIds,
+				defaultTex: tex, appearanceBehaviour: appearances );
+		}
+
+		internal static Sprite LoadSprite ( byte[] imgBytes, string name, Rect rect )
 		{
-            Texture2D tex = new( 2, 2 );
-            tex.LoadImage( imgBytes );
+			Sprite sprite = Sprite.Create( LoadTexture( imgBytes, name ), rect, CardUtils.DefaultVector2 );
+			sprite.name = string.Concat( "portrait_", name );
 
-            tex.name = string.Concat( "portrait_", name );
-            tex.filterMode = FilterMode.Point;
+			return sprite;
+		}
 
-            return tex;
-        }
-    }
+		internal static Texture2D LoadTexture ( byte[] imgBytes, string name )
+		{
+			Texture2D tex = new( 2, 2 );
+			tex.LoadImage( imgBytes );
+
+			tex.name = string.Concat( "portrait_", name );
+			tex.filterMode = FilterMode.Point;
+
+			return tex;
+		}
+	}
 }
