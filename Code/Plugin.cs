@@ -19,7 +19,7 @@ namespace SnakeHealthMod
 	{
 		public const string PluginGuid = "MADH.inscryption.SnakeHealthMod";
 		private const string PluginName = "SnakeHealthMod";
-		private const string PluginVersion = "1.2.0.0";
+		private const string PluginVersion = "1.3.0.0";
 
 		internal static ManualLogSource Log;
 

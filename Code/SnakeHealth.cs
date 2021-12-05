@@ -93,7 +93,7 @@ namespace SnakeHealthMod
 				return;
 
 			if ( !game.HasStarted && Input.GetKeyDown( KeyCode.Space ) )
-				game.Start();
+				base.StartCoroutine( game.Start() );
 
 			if ( !game.HasStarted )
 				return;
@@ -103,11 +103,11 @@ namespace SnakeHealthMod
 				mod.healthAdjustment = game.Score;
 			}
 
-			if ( game.HasEnded || Input.GetKeyDown( KeyCode.Q ) )
+			if ( !isEnding && ( game.HasEnded || Input.GetKeyDown( KeyCode.Q ) ) )
 			{
 				isEnding = true;
 
-				this.Exit();
+				base.StartCoroutine( this.Exit() );
 
 				return;
 			}
@@ -145,7 +145,6 @@ namespace SnakeHealthMod
 
 		private void UpdateDirection()
 		{
-
 			if ( Input.GetKeyDown( KeyCode.W ) && currentDir != Direction.Down )
 				game.MoveDir = Direction.Up;
 

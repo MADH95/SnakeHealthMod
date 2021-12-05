@@ -35,7 +35,7 @@ namespace SnakeHealthMod.Game
 			yield break;
 		}
 
-		public void Start()
+		public IEnumerator Start()
 		{
 			renderer.SetGrid();
 
@@ -49,7 +49,11 @@ namespace SnakeHealthMod.Game
 
 			renderer.AddSnakeTail( snake.body[ 2 ] );
 
+			yield return new WaitForSeconds( 2f );
+
 			HasStarted = true;
+
+			yield break;
 		}
 
 		public void Step()
