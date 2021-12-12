@@ -54,6 +54,7 @@ namespace SnakeHealthMod
 		private SnakeGame game;
 		private float tickTime = 0;
 		private bool isEnding = false;
+		private bool isLoading = false;
 		private Direction currentDir;
 
 		public override bool RespondsToDrawn()
@@ -92,8 +93,11 @@ namespace SnakeHealthMod
 			if ( game is null || isEnding )
 				return;
 
-			if ( !game.HasStarted && Input.GetKeyDown( KeyCode.Space ) )
+			if ( !isLoading && Input.GetKeyDown( KeyCode.Space ) )
+			{
+				isLoading = true;
 				base.StartCoroutine( game.Start() );
+			}
 
 			if ( !game.HasStarted )
 				return;
